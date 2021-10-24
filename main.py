@@ -41,17 +41,17 @@ def go(config):
 
 if __name__ == '__main__':
 
-    # driver_pjs = webdriver.PhantomJS(
-    #     executable_path=sys_path(browser="phantomjs"),
-    #     service_args=['--ignore-ssl-errors=true', '--ssl-protocol=TLSv1'])
+    driver_pjs = webdriver.PhantomJS(
+        executable_path=sys_path(browser="phantomjs"))
+        # service_args=['--ignore-ssl-errors=true', '--ssl-protocol=TLSv1'])
 
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    driver_pjs = webdriver.Chrome(
-            options=chrome_options,
-            executable_path=sys_path(browser="chromedriver"),
-            service_args=['--ignore-ssl-errors=true', '--ssl-protocol=TLSv1'])
-    print('Driver Launched\n')
+    # chrome_options = Options()
+    # chrome_options.add_argument("--headless")
+    # driver_pjs = webdriver.Chrome(
+    #         options=chrome_options,
+    #         executable_path=sys_path(browser="chromedriver"),
+    #         service_args=['--ignore-ssl-errors=true', '--ssl-protocol=TLSv1'])
+    # print('Driver Launched\n')
 
     lst_conf = sorted([
         fileName for fileName in os.listdir()
