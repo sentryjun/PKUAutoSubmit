@@ -34,9 +34,10 @@ def go(config):
     path = conf['capture']['截图保存路径']
     wechat = conf.getboolean('wechat', '是否需要微信通知')
     sckey = conf['wechat']['SCKEY']
+    main_reason = dict(conf['mainreason']).values()
 
     run(driver_pjs, userName, password, campus, reason, destination, track,
-        habitation, district, street, capture, path, wechat, sckey)
+        habitation, district, street, capture, path, wechat, sckey, main_reason)
 
 
 if __name__ == '__main__':
