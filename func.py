@@ -137,14 +137,16 @@ def write_street(driver, street):
 
 
 def click_check(driver):
-    driver.find_element_by_class_name('el-checkbox__label').click()
+    driver.find_element_by_class_name('el-checkbox__inner').click()
     time.sleep(0.1)
 
 
 def click_inPeking(driver):
     driver.find_element_by_class_name('el-radio__inner').click()
     time.sleep(0.1)
-
+def click_yes(driver):
+    driver.find_element_by_class_name('el-checkbox__inner').click()
+    time.sleep(0.1)
 
 def submit(driver):
     driver.find_element_by_xpath(
