@@ -153,9 +153,9 @@ def submit(driver):
         '//button/span[contains(text(),"保存")]').click()
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
-            (By.XPATH, '(//button/span[contains(text(),"提交")])[3]')))
+            (By.XPATH, '(//button/span[contains(text(),"提交")])[1]')))
     driver.find_element_by_xpath(
-        '(//button/span[contains(text(),"提交")])[3]').click()
+        '(//button/span[contains(text(),"提交")])[1]').click()
     time.sleep(0.1)
 
 
