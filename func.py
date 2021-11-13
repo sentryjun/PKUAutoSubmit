@@ -97,15 +97,21 @@ def select_campus(driver, campus):
 
 
 def select_destination(driver, destination):
-    driver.find_elements_by_class_name('el-select')[2].click()
+    driver.find_elements_by_class_name('el-select')[3].click()
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
             (By.XPATH, f'//li/span[text()="{destination}"]')))
     driver.find_element_by_xpath(f'//li/span[text()="{destination}"]').click()
 
-
+def select_reason(driver, main_reason):
+    driver.find_elements_by_class_name('el-select')[2].click()
+    WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located(
+            (By.XPATH, f'//li/span[text()="{main_reason}"]')))
+    driver.find_element_by_xpath(f'//li/span[text()="{main_reason}"]').click()
+    
 def select_district(driver, district):
-    driver.find_elements_by_class_name('el-select')[3].click()
+    driver.find_elements_by_class_name('el-select')[4].click()
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
             (By.XPATH, f'//li/span[text()="{district}"]')))
@@ -151,7 +157,7 @@ def submit(driver):
     time.sleep(0.1)
 
 
-def fill_out(driver, campus, reason, destination, track):
+def fill_out(driver, campus, reason, destination, track, main_reason):
     print('开始填报出校备案')
 
     print('选择出校/入校    ', end='')
@@ -160,6 +166,10 @@ def fill_out(driver, campus, reason, destination, track):
 
     print('选择校区    ', end='')
     select_campus(driver, campus)
+    print('Done')
+    
+    print("选择出入校事由    ", end='')
+    select_reason(driver, main_reason)
     print('Done')
 
     print('填写出入校事由    ', end='')
@@ -180,11 +190,15 @@ def fill_out(driver, campus, reason, destination, track):
     print('出校备案填报完毕！')
 
 
-def fill_in(driver, campus, reason, habitation, district, street):
+def fill_in(driver, campus, reason, habitation, district, street, main_reason):
     print('开始填报入校备案')
 
     print('选择出校/入校    ', end='')
     select_in_out(driver, '入校')
+    print('Done')
+    
+    print("选择出入校事由    ", end='')
+    select_reason(driver, main_reason)
     print('Done')
 
     print('填写出入校事由    ', end='')
@@ -238,16 +252,16 @@ def wechat_notification(userName, sckey):
 
 
 def run(driver, userName, password, campus, reason, destination, track,
-        habitation, district, street, capture, path, wechat, sckey):
+        habitation, district, street, capture, path, wechat, sckey, main_reason="学业"):
     login(driver, userName, password)
     print('=================================')
 
     go_to_application_out(driver)
-    fill_out(driver, campus, reason, destination, track)
+    fill_out(driver, campus, reason, destination, track, main_reason)
     print('=================================')
 
     go_to_application_in(driver, userName, password)
-    fill_in(driver, campus, reason, habitation, district, street)
+    fill_in(driver, campus, reason, habitation, district, street, main_reason)
     print('=================================')
 
     if capture:
